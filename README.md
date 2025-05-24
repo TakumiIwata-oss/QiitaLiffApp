@@ -67,4 +67,3 @@ $ netlify deploy --prod
 You can also check official site before you trying it.
 
 https://liff-starter.netlify.app
-

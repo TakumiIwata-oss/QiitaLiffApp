@@ -1,6 +1,13 @@
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
 [build]
-  command = "cd src/vanilla && yarn install && yarn build"
-  publish = "src/vanilla/dist"
+  command = "cd src/nextjs && npm install && npm run build"
+  publish = "src/nextjs/.next"
 
 [template.environment]
-  LIFF_ID = "Your LIFF ID which is aquired from LINE Dev Center"
+  LIFF_ID = "2007394224-VM2dgq5m"
+
+[blobs]
+  site_id = "8f63186a-9daf-4d1a-a96c-81a4fe122470"
+

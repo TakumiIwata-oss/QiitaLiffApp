@@ -1,6 +1,7 @@
 {
   "name": "liff-starter",
   "version": "3.0.0",
+  "type": "module",
   "description": "A minimun app to demo how to integrate LIFF",
   "repository": {
     "type": "git",
@@ -9,5 +10,18 @@
   "keywords": [
     "LINE",
     "LIFF"
-  ]
+  ],
+  "devDependencies": {
+    "@netlify/plugin-nextjs": "^5.11.1",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.3",
+    "prettier": "^3.5.3",
+    "tailwindcss": "^4.1.7"
+  },
+  "dependencies": {
+    "netlify-cli": "^21.4.2"
+  },
+  "scripts": {
+    "prettier": "prettier --write ."
+  }
 }
