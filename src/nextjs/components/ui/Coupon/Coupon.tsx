@@ -19,8 +19,8 @@ export default function Coupon({
       <CardMedia
         component="img"
         height="194"
-        image="/エレガントFood SHop.jpg"
-        alt="Paella dish"
+        image="/images/エレガントFood SHop.jpg"
+        alt="Food Shop"
       />
       <CardContent>
         <Typography>

@@ -29,7 +29,7 @@ export default async function handler(req, res) {
       ];
 
       // ">お問い合わせ"の場合にFlex Messageを送信
-      if (userMessage === ">お問い合わせ") {
+      if (userMessage === "お問い合わせ") {
         userState.set(userId, { step: "categorySelection" });
 
         const flexMessage = {
@@ -88,10 +88,12 @@ export default async function handler(req, res) {
           },
         };
 
+        await sendLoading({ userId });
         await sendReply(event.replyToken, [flexMessage]);
       } else if (options.includes(userMessage)) {
         userState.set(userId, { step: "detailsInput", category: userMessage });
 
+        await sendLoading({ userId });
         await sendReply(event.replyToken, [
           { type: "text", text: "お問い合わせ内容を入力してください。" },
         ]);
@@ -102,6 +104,8 @@ export default async function handler(req, res) {
         const state = userState.get(userId);
         const category = state.category;
         const details = userMessage;
+
+        await sendLoading({ userId });
 
         await saveToSpreadSheet({ userId, category, details });
 
@@ -145,5 +149,17 @@ async function saveToSpreadSheet(data) {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
+  });
+}
+
+async function sendLoading({ userId }: { userId: string }) {
+  const url = "https://api.line.me/v2/bot/chat/loading/start";
+  await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${process.env.NEXT_PUBLIC_LINE_ACCESS_TOKEN}`,
+    },
+    body: JSON.stringify({ chatId: userId }),
   });
 }

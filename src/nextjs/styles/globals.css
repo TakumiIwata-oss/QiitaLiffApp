@@ -2,140 +2,90 @@
 @tailwind components;
 @tailwind utilities;
 
-html,
-body {
-  font-family: "Zen Maru Gothic", sans-serif;
-  color: #333333;
-  margin: 0;
-  padding: 0;
+@layer base {
+  html,
+  body {
+    font-family: "Zen Maru Gothic", sans-serif;
+    color: #333333;
+    margin: 0;
+    padding: 0;
+  }
 }
 
-.home {
-  padding: 5rem 2rem;
-  text-align: center;
+@layer components {
+  .home {
+    @apply py-20 px-8 text-center;
+  }
+
+  .home__title {
+    @apply text-6xl leading-tight;
+  }
+
+  .home__title__link {
+    @apply text-primary no-underline hover:underline;
+  }
+
+  .home__badges {
+    @apply flex items-center justify-center flex-nowrap overflow-hidden mb-24;
+  }
+
+  .home__badges__badge {
+    @apply inline-block py-0.3 px-0.4 text-xs font-bold leading-none text-center whitespace-nowrap align-baseline;
+  }
+
+  .home__badges__badge:first-child {
+    @apply rounded-tl rounded-bl;
+  }
+
+  .home__badges__badge:last-child {
+    @apply rounded-tr rounded-br;
+  }
+
+  .badge--primary {
+    @apply text-secondary border border-secondary bg-transparent;
+  }
+
+  .badge--secondary {
+    @apply text-white bg-secondary;
+  }
+
+  .home__buttons {
+    @apply flex items-center justify-center flex-wrap gap-4;
+  }
+
+  .home__buttons__button {
+    @apply min-w-[250px] cursor-pointer inline-block font-normal text-center align-middle select-none border border-transparent py-1.5 px-3 text-[0.9375rem] leading-6 rounded transition-all duration-150 ease-in-out;
+  }
+
+  .button--primary {
+    @apply text-white bg-primary border-primary hover:bg-[#009300] hover:border-[#008600];
+  }
+
+  .button--secondary {
+    @apply text-white bg-secondary border-secondary hover:bg-[#24272b] hover:border-[#1e2124];
+  }
+
+  .button--tertiary {
+    @apply bg-transparent text-secondary border-secondary hover:bg-secondary/10;
+  }
 }
 
-.home__title {
-  font-size: 6rem;
-  line-height: 1.15;
-}
+@layer utilities {
+  .textarea {
+    @apply p-3 border border-gray-300 rounded outline-none transition-all duration-300;
+  }
 
-.home__title__link {
-  color: #06c755;
-  text-decoration: none;
-}
+  .textarea:focus {
+    @apply border-[#1976d2] shadow-[0_0_0_2px_rgba(25,118,210,0.5)];
+  }
 
-.home__title__link:hover {
-  text-decoration: underline;
-}
+  .textarea.error {
+    @apply border-[#d32e2e];
+  }
 
-.home__badges {
-  align-items: center;
-  justify-content: center;
-  display: flex;
-  flex-wrap: nowrap;
-  overflow: hidden;
-  margin-bottom: 6rem;
-}
-
-.home__badges__badge:first-child {
-  border-top-left-radius: 2px;
-  border-bottom-left-radius: 2px;
-}
-
-.home__badges__badge:last-child {
-  border-top-right-radius: 2px;
-  border-bottom-right-radius: 2px;
-}
-
-.home__badges__badge {
-  display: inline-block;
-  padding: 0.3em 0.4em;
-  font-size: 0.75rem;
-  font-weight: 700;
-  line-height: 1;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: baseline;
-}
-
-.badge--primary {
-  color: #353a40;
-  border: 1px solid #353a40;
-  background-color: transparent;
-  padding-top: calc(0.3em - 1px);
-  padding-bottom: calc(0.3em - 1px);
-}
-
-.badge--secondary {
-  color: #fff;
-  background-color: #353a40;
-}
-
-.home__buttons {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.home__buttons__button {
-  min-width: 250px;
-  cursor: pointer;
-  display: inline-block;
-  font-weight: 400;
-  text-align: center;
-  vertical-align: middle;
-  user-select: none;
-  border: 1px solid transparent;
-  padding: 0.375rem 0.75rem;
-  font-size: 0.9375rem;
-  line-height: 1.5;
-  border-radius: 2px;
-  text-decoration: none;
-  transition:
-    color 0.15s ease-in-out,
-    background-color 0.15s ease-in-out,
-    border-color 0.15s ease-in-out,
-    box-shadow 0.15s ease-in-out;
-}
-
-.button--primary {
-  color: #fff;
-  background-color: #00b900;
-  border-color: #00b900;
-}
-
-.button--primary:hover {
-  color: #fff;
-  background-color: #009300;
-  border-color: #008600;
-}
-
-.button--secondary {
-  color: #fff;
-  background-color: #353a40;
-  border-color: #353a40;
-}
-
-.button--secondary:hover {
-  color: #fff;
-  background-color: #24272b;
-  border-color: #1e2124;
-}
-
-.button--tertiary {
-  background-color: transparent;
-  background-image: none;
-  color: #353a40;
-  border-color: #353a40;
-}
-
-.button--tertiary:hover {
-  color: #353a40;
-  background-color: rgba(53, 58, 64, 0.1);
-  border-color: #353a40;
+  .textarea.error:focus {
+    @apply border-[#d32e2e] shadow-[0_0_0_2px_rgba(211,46,46,0.5)];
+  }
 }
 
 @media screen and (max-width: 600px) {
@@ -144,41 +94,16 @@ body {
   }
 
   .home__title {
-    font-size: 4rem;
-    line-height: 1.15;
+    @apply text-4xl leading-tight;
   }
 
   .home__buttons__button {
-    font-size: 1.5rem;
+    @apply text-2xl;
   }
 }
 
 @media screen and (max-width: 930px) {
   .home__buttons {
-    flex-direction: column;
+    @apply flex-col;
   }
-}
-
-.textarea {
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  outline: none;
-  transition:
-    border-color 0.3s,
-    box-shadow 0.3s;
-}
-
-.textarea:focus {
-  border-color: #1976d2; /* MUIのTextFieldのフォーカス時の色 */
-  box-shadow: 0 0 0 2px rgba(25, 118, 210, 0.5); /* #1976d2のrgba */
-}
-
-.textarea.error {
-  border-color: #d32e2e;
-}
-
-.textarea.error:focus {
-  border-color: #d32e2e; /* MUIのエラー時のフォーカス色 */
-  box-shadow: 0 0 0 2px rgba(211, 46, 46, 0.5); /* #d32e2eのrgba */
 }
